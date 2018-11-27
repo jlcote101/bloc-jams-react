@@ -9,14 +9,16 @@ class Album extends Component {
       return album.slug === this.props.match.params.slug
     });
 
-    function songClass () {
-      return <p></p>;
-    };
 
     this.state = {
       album: album
     };
   }
+
+  songClass () {
+    return "";
+  };
+
 
   render() {
     return (
