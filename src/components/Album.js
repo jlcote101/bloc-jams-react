@@ -46,32 +46,28 @@ class Album extends Component {
     }
   };
 
-  mouseEnter(index) {
+  onMouseEnter(index) {
     this.setState({ isMouseHover: index});
   };
 
-  mouseLeave() {
+  onMouseLeave() {
     this.setState({ isMouseHover: false});
   };
 
-  handleMouseHover(song, index){
+  renderIcon(song, index){
     if (this.state.isMouseHover === index) {
-      return <span className="ion-play"/>;
-    }else if (this.state.currentSong === song && this.state.isPlaying) {
-      return <span className="ion-pause"/>;
-    }else if  (this.state.currentSong === song && !this.state.isPlaying) {
-      return <span className="ion-play"/>;
+      return <span className="ion-md-play"/>;
+    }else if (this.state.currentSong.isMouseHover === song && this.state.isPlaying) {
+      return <span className="ion-md-pause"/>;
+    }else if  (this.state.currentSong.isMouseHover === song && !this.state.isPlaying) {
+      return <span className="ion-md-play"/>;
     }else {
       return index +1;
     }
   };
 
 
-
-
-
-
-  render() {
+render() {
     return (
       <section className="album">
         <section id="album-info">
@@ -92,7 +88,7 @@ class Album extends Component {
             {
               this.state.album.songs.map((song, index) =>
                 <tr className='song' key={index} onClick={() => this.handleSongClick(song)}>
-                  <td>{index +1}</td>
+                  <td>{this.renderIcon()}</td>
                   <td>{song.title}</td>
                   <td>{song.duration}</td>
                 </tr>
