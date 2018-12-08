@@ -18,7 +18,9 @@ class Album extends Component {
       currentSongIndex: -1,
       isMouseHover: -1,
       currentTime: 0,
-      duration: album.songs[0].duration
+      duration: album.songs[0].duration,
+      currentVolume: .5,
+
     };
 
   this.audioElement = document.createElement('audio');
@@ -33,10 +35,14 @@ class Album extends Component {
       },
       durationchange: e => {
         this.setState({duration: this.audioElement.duration});
+      },
+      volumechange: e => {
+        this.setState({ currentVolume: this.audioElement.volume});
       }
     };
     this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
     this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+    this.audioElement.addEventListener('volumechange', this.eventListeners.volumechange)
   }
 
   componentWillUnmount() {
@@ -101,7 +107,7 @@ handlePrevClick() {
 
 handleNextClick(){
   const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-  const newIndex = Math.min(4, currentIndex +1);
+  const newIndex = currentIndex === this.state.album.songs.length - 1 ? 0 : Math.min(this.state.album.songs.length -1, currentIndex +1);
   const newSong = this.state.album.songs[newIndex];
   this.setSong(newSong);
   this.play();
@@ -111,6 +117,22 @@ handleTimeChange (e) {
   const newTime = this.audioElement.duration * e.target.value;
   this.audioElement.currentTime = newTime;
   this.setState({ currentTime: newTime });
+}
+
+handleVolumeChange(e){
+   const newVolume = e.target.value;
+   this.audioElement.volume = newVolume;
+   this.setState({currentVolume: newVolume});
+}
+
+formatTime (seconds) {
+  const minutes = Math.round(seconds / 60);
+  const second = Math.round(seconds % 60);
+  if (second < 10) {
+    return (minutes + ":0" + second)
+  } else {
+    return (minutes + ":" + second);
+  };
 }
 
 render() {
@@ -136,7 +158,7 @@ render() {
                 <tr className='song' key={index} onClick={() => this.handleSongClick(song, index)} onMouseEnter={() => this.onMouseEnter(index)} onMouseLeave={() => this.onMouseLeave()}>
                   <td>{this.renderIcon(song, index)}</td>
                   <td>{song.title}</td>
-                  <td>{song.duration}</td>
+                  <td>{this.formatTime(song.duration)}</td>
                 </tr>
             )}
           </tbody>
@@ -150,6 +172,8 @@ render() {
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          handleVolumeChange={(e) => this.handleVolumeChange(e)}
+          formatTime={(time) => this.formatTime(time)}
         />
       </section>
     );
