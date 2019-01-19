@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Library from './components/Library';
 import './Homepage.css';
 
 class Homepage extends Component {
@@ -9,9 +8,6 @@ class Homepage extends Component {
         <header>
           <h1 className="logo" to='/Library'>Bloc Jams</h1>
         </header>
-        <body>
-
-        </body>
       </div>
     )
   }
