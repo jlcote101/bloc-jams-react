@@ -11,8 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <main>
-          <Link className="library-link"to='/Library'>Library</Link>
-          <Route path='/homepage' component={Homepage}/>
+          <Route exact path='/' component={Homepage}/>
           <Route path="/library" component={Library}/>
           <Route path="/album/:slug" component={Album}/>
         </main>

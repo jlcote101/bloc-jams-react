@@ -1,9 +1,37 @@
+.library-link{
+  color: white;
+  font-size: 40px;
+  text-shadow: -1px -1px 4px black,
+               1px -1px 4px black,
+               -1px 1px 4px black,
+               1px 1px 4px black;
+  text-decoration: none;
+  font-family: "Times New Roman", Times, serif;
+}
+
+
 .homepage{
-  background-image: url(./images/headphone-coffee.jpg);
+  text-align: center;
+  background-image: url(./images/headphone-couch.jpg);
   background-repeat: no-repeat;
   background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   height: 100vh;
   margin: 0;
-  padding: 0;
+  padding-top: 1px;
+
+}
+
+
+.logo {
+  font-size: 140px;
+
+  color: white;
+  text-shadow: 4px 4px 10px black,
+               8px 8px 23px black,
+               18px 18px 33px black;
+  font-family: "Times New Roman", Times, serif;
 }
