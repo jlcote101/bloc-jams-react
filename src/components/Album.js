@@ -68,6 +68,7 @@ class Album extends Component {
 
   handleSongClick(song, index) {
     const isSameSong = this.state.currentSongIndex === index;
+    console.log(isSameSong, this.state.isPlaying)
     if (this.state.isPlaying && isSameSong) {
       this.pause();
     } else {
@@ -85,8 +86,13 @@ class Album extends Component {
   };
 
   renderIcon(song, index){
-    if (this.state.isPlaying === true && this.state.currentSongIndex === index) {
-      return <span className="ion-md-pause"/>
+    if ( this.state.currentSongIndex === index) {
+      if (this.state.isPlaying === true){
+        return <span className="ion-md-pause"/>
+      }
+      else {
+        return <span className="ion-md-play"/>
+      }
     }
     if (this.state.isMouseHover === index) {
       return <span className="ion-md-play"/>
@@ -102,7 +108,7 @@ handlePrevClick() {
   const newIndex = Math.max(0, currentIndex - 1);
   const newSong = this.state.album.songs[newIndex];
   this.setSong(newSong);
-  this.play();
+  this.play(newIndex);
 }
 
 handleNextClick(){
@@ -110,7 +116,7 @@ handleNextClick(){
   const newIndex = currentIndex === this.state.album.songs.length - 1 ? 0 : Math.min(this.state.album.songs.length -1, currentIndex +1);
   const newSong = this.state.album.songs[newIndex];
   this.setSong(newSong);
-  this.play();
+  this.play(newIndex);
 }
 
 handleTimeChange (e) {
@@ -126,13 +132,16 @@ handleVolumeChange(e){
 }
 
 formatTime (seconds) {
+  if (isNaN(seconds) || seconds === 0){
+    return "--:--"
+  }
   const minutes = Math.round(seconds / 60);
   const second = Math.round(seconds % 60);
   if (second < 10) {
     return (minutes + ":0" + second)
   } else {
     return (minutes + ":" + second);
-  };
+  }
 }
 
 render() {
@@ -168,7 +177,7 @@ render() {
           currentSong={this.state.currentSong}
           currentTime={this.audioElement.currentTime}
           duration={this.audioElement.duration}
-          handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+          handleSongClick={() => this.handleSongClick(this.state.currentSong, this.state.currentSongIndex)}
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
