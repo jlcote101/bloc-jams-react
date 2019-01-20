@@ -1,0 +1,37 @@
+.album{
+  text-align: center;
+  background-image: url(../images/the-colors.jpg);
+  repeat: none;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 1px;
+}
+
+
+/* .album[1]{
+  text-align: center;
+  background-image: url(../images/the-colors.jpg);
+  repeat: none;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 1px;
+}
+
+.album[2]{
+  text-align: center;
+  background-image: url(../images/the-telephone.jpg);
+  repeat: none;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 1px;
+} */
+
+
+#song-list {
+  justify-content: center;
+  display: flex;
+}
+
+#album-title{
+  font-family: 0px;
+}
