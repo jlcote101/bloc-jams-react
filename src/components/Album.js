@@ -145,16 +145,25 @@ formatTime (seconds) {
   }
 }
 
+
 render() {
     return (
-      <section className="album">
-        <section id="album-info">
+      <section className="album"
+          style={{backgroundImage: 'url(' + this.state.album.albumCover + ')',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'bottom',
+                  position: 'relative',
+                  backgroundRepeat: 'no-repeat',
+                  width: '100%',
+                  height: '100vh',
+                  }}>
+        <section className="album-information">
           <div className="album-details">
             <h1 id="album-title">{this.state.album.title}</h1>
             <h2 className="artist">{this.state.album.artist}</h2>
             <div id="release-info">{this.state.album.releaseInfo}</div>
-          </div>
-        </section>
+
+
         <table id="song-list">
           <colgroup>
             <col id="song-number-column" />
@@ -184,7 +193,8 @@ render() {
           handleVolumeChange={(e) => this.handleVolumeChange(e)}
           formatTime={(time) => this.formatTime(time)}
         />
-
+                  </div>
+        </section>
       </section>
     );
   }

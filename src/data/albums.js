@@ -1,5 +1,6 @@
 export default [{
   title: 'The Colors',
+  image: 'the-colors',
   artist: 'Pablo Picasso',
   releaseInfo: '1909 Spanish Records',
   albumCover: '/assets/images/album_covers/01.jpg',
@@ -13,6 +14,7 @@ export default [{
   ]
 }, {
     title: 'The Telephone',
+    image: 'the-telephone',
     artist: 'Guglielmo Marconi',
     releaseInfo: '1909 EM',
     albumCover: '/assets/images/album_covers/02.jpg',
